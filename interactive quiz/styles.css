@@ -1,0 +1,250 @@
+:root {
+    --bg-color: #f5f6fa;
+    --text-color: #333;
+    --secondary-text-color: #222;
+    --card-bg: #fff;
+    --card-shadow: rgba(52, 152, 219, 0.15);
+    --card-hover-shadow: rgba(52, 152, 219, 0.20);
+    --progress-color: #3498db;
+    --option-bg: #ecf6fd;
+    --option-selected-bg: #d0eafe;
+    --correct-color: #4caf50;
+    --incorrect-color: #e53935;
+    --button-gradient-start: #3498db;
+    --button-gradient-end: #6dc5fb;
+    --button-hover-gradient-start: #2980b9;
+    --button-hover-gradient-end: #51b7fa;
+    --button-shadow: rgba(52, 152, 219, 0.15);
+    --gradient-bg-start: #89f7fe;
+    --gradient-bg-end: #66a6ff;
+}
+
+.dark-mode {
+    --bg-color: #2c3e50;
+    --text-color: #ecf0f1;
+    --secondary-text-color: #ecf0f1;
+    --card-bg: #34495e;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --card-hover-shadow: rgba(0, 0, 0, 0.5);
+    --progress-color: #95a5a6;
+    --option-bg: #4a657c;
+    --option-selected-bg: #5f809d;
+    --correct-color: #2ecc71;
+    --incorrect-color: #e74c3c;
+    --button-gradient-start: #7f8c8d;
+    --button-gradient-end: #95a5a6;
+    --button-hover-gradient-start: #616a6b;
+    --button-hover-gradient-end: #7f8c8d;
+    --button-shadow: rgba(0, 0, 0, 0.2);
+    --gradient-bg-start: #2c3e50;
+    --gradient-bg-end: #34495e;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg-color);
+    margin: 0;
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+}
+
+.background-gradient {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: linear-gradient(120deg, var(--gradient-bg-start) 0%, var(--gradient-bg-end) 100%);
+    transition: background 0.3s;
+}
+
+.quiz-container {
+    width: 420px;
+    margin: 60px auto;
+    background: var(--card-bg);
+    padding: 35px 45px 30px 45px;
+    border-radius: 18px;
+    box-shadow: 0 6px 32px var(--card-shadow);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.quiz-container.card:hover {
+    box-shadow: 0 12px 32px var(--card-hover-shadow);
+}
+
+h1 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+#progress {
+    text-align: center;
+    margin-bottom: 18px;
+    font-size: 1.05rem;
+    color: var(--progress-color);
+    transition: color 0.3s;
+}
+
+#question {
+    font-size: 1.22rem;
+    margin-bottom: 24px;
+    color: var(--secondary-text-color);
+    min-height: 42px;
+    transition: color 0.3s;
+}
+
+#options {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 22px 0;
+}
+
+#options li {
+    margin-bottom: 12px;
+    background: var(--option-bg);
+    border-radius: 8px;
+    transition: background 0.3s, box-shadow 0.3s;
+    padding: 12px 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#options li:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#options li input[type="radio"] {
+    margin-right: 12px;
+    accent-color: var(--progress-color); /* Style radio button */
+}
+
+#options li.selected {
+    background: var(--option-selected-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#submitBtn {
+    display: block;
+    margin: 6px auto 0 auto;
+    width: 92%;
+    padding: 12px 0;
+    background: linear-gradient(90deg, var(--button-gradient-start), var(--button-gradient-end));
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 10px var(--button-shadow);
+}
+
+#submitBtn:hover:not(:disabled) {
+    background: linear-gradient(90deg, var(--button-hover-gradient-start), var(--button-hover-gradient-end));
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.25);
+}
+
+#submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+#result {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.12rem;
+    font-weight: bold;
+    color: var(--correct-color);
+    min-height: 30px;
+    transition: color 0.3s;
+}
+
+.final-score {
+    font-size: 1.5rem;
+    color: var(--progress-color);
+    margin-top: 20px;
+}
+
+/* Dark Mode Toggle Switch */
+.dark-mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
+
+.dark-mode-toggle label {
+    display: block;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dark-mode-toggle label::before {
+    content: '☀️'; /* Sun icon */
+    position: absolute;
+    left: -25px; /* Position to the left of the toggle */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: opacity 0.3s;
+    opacity: 1;
+}
+
+.dark-mode-toggle label::after {
+    content: '🌙'; /* Moon icon */
+    position: absolute;
+    right: -25px; /* Position to the right of the toggle */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+.dark-mode-toggle input[type="checkbox"] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.dark-mode-toggle .slider {
+    position: absolute;
+    content: '';
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode-toggle input:checked + label {
+    background-color: var(--progress-color);
+}
+
+.dark-mode-toggle input:checked + label .slider {
+    transform: translateX(30px); /* Move slider to the right */
+}
+
+.dark-mode-toggle input:checked + label::before {
+    opacity: 0; /* Hide sun */
+}
+
+.dark-mode-toggle input:checked + label::after {
+    opacity: 1; /* Show moon */
+}
